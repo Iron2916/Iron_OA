@@ -7,8 +7,8 @@
     </resultMap>
 
     <select id="findByUserId" resultType="com.iron.model.system.SysMenu">
-        select m.id,m.parent_id,m.name,m.type,m.path,m.component,m.perms,m.icon,m.sort_value,m.status,m.create_time,m.update_time,m.is_deleted
-        from sys_menu m join sys_role_menu rm on m.id = rm.menu_id join  sys_user_role ur on rm.role_id = ur.role_id
+        select distinct m.id,m.parent_id,m.name,m.type,m.path,m.component,m.perms,m.icon,m.sort_value,m.status,m.create_time,m.update_time,m.is_deleted
+        from sys_menu m inner join sys_role_menu rm on m.id = rm.menu_id inner join  sys_user_role ur on rm.role_id = ur.role_id
         where
             ur.user_id = #{userId} and
             m.status = 1 and

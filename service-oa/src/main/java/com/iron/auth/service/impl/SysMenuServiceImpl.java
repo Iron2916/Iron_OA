@@ -47,6 +47,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         } else {    // 普通用户根据 id 联合查询
 
             menuList = baseMapper.findByUserId(userId);     // 联合查询
+            System.out.println("menuList = " + menuList);
         }
 
         // 构建树形结构
