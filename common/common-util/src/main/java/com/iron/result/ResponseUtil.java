@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// 配合 SpringSecurityConfig 类，存入返回值(可能成功，可能失败)
 public class ResponseUtil {
 
     public static void out(HttpServletResponse response, Result r) {

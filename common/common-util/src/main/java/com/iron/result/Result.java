@@ -40,10 +40,19 @@ public class Result<T> {
     public static<T> Result<T> fail() {
         return build(null,ResultCodeEnum.FAIL);
     }
+    public static<T> Result<T> build(T data, int code, String message) {
 
+        final Result<T> result = new Result<>();
+        result.setData(data);
+        result.setCode(code);
+        result.setMessage(message);
+        return result;
+    }
     public static<T> Result<T> fail(T data) {
         return build(data,ResultCodeEnum.FAIL);
     }
+
+
 
     public Result<T> message(String msg){
         this.setMessage(msg);

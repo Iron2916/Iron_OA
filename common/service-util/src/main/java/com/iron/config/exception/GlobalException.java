@@ -2,9 +2,14 @@ package com.iron.config.exception;
 
 import com.iron.config.exception.myException.IronException;
 import com.iron.result.Result;
+import com.iron.result.ResultCodeEnum;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+
+
 
 @RestControllerAdvice
 public class GlobalException {
@@ -35,4 +40,11 @@ public class GlobalException {
         e.printStackTrace();
         return Result.fail().message("特定异常 Iron异常触发");
     }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseBody
+    public Result error(AccessDeniedException e) throws AccessDeniedException {
+        return Result.build(null, ResultCodeEnum.PERMISSION);
+    }
+
 }

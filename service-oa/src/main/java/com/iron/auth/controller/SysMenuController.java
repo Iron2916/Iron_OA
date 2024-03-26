@@ -9,6 +9,7 @@ import com.iron.result.Result;
 import com.iron.vo.system.AssginMenuVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class SysMenuController {
     @Autowired
     SysMenuService service;
 
+    @PreAuthorize("hasAuthority('bnt.sysMenu.list')")
     @ApiOperation("获得菜单的树形结构节点")
     @GetMapping("findNodes")
     public Result findNodes() {
@@ -39,6 +41,7 @@ public class SysMenuController {
         return Result.ok(sysMenus);
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysMenu.add')")
     @ApiOperation("保存菜单选项")
     @PostMapping("save")
     public Result save(@RequestBody SysMenu sysMenu) {
@@ -47,6 +50,7 @@ public class SysMenuController {
         return Result.ok();
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysMenu.update')")
     @ApiOperation("更新菜单选项")
     @PutMapping("update")
     public Result updateById(@RequestBody SysMenu sysMenu) {
@@ -55,6 +59,7 @@ public class SysMenuController {
         return Result.ok();
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysMenu.remove')")
     @ApiOperation("删除菜单选项")
     @DeleteMapping("remove/{id}")
     public Result remove(@PathVariable long id) {
@@ -73,6 +78,7 @@ public class SysMenuController {
         return Result.ok();
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysMenu.list')")
     @ApiOperation(value = "根据角色获取菜单")
     @GetMapping("toAssign/{roleId}")
     public Result toAssign(@PathVariable Long roleId) {
@@ -80,6 +86,7 @@ public class SysMenuController {
         return Result.ok(list);
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysRole.assignAuth')") // 给角色分配权限
     @ApiOperation(value = "给角色分配权限")
     @PostMapping("/doAssign")
     public Result doAssign(@RequestBody AssginMenuVo assignMenuVo) {
