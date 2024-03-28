@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.iron.auth.mapper")
+@MapperScan(basePackages = {"com.iron.auth.mapper", "com.iron.process.mapper"})
 public class mybatisPlusConfig {
 
     @Bean
