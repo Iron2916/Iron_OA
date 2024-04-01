@@ -3,6 +3,7 @@ package com.iron.jwt;
 import io.jsonwebtoken.*;
 import org.springframework.util.StringUtils;
 
+
 import java.util.Date;
 
 //jwt工具类
@@ -61,7 +62,7 @@ public class JwtHelper {
     }
 
     public static void main(String[] args) {
-        String token = JwtHelper.createToken(6L, "li4");
+        String token = JwtHelper.createToken(4L, "lisi");
         System.out.println(token);
         Long userId = JwtHelper.getUserId(token);
         String username = JwtHelper.getUsername(token);

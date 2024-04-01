@@ -6,10 +6,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.iron.model.process.OaProcessTemplate;
 import com.iron.model.process.OaProcessType;
 import com.iron.process.mapper.OaProcessTemplateMapper;
+import com.iron.process.service.OaProcessService;
 import com.iron.process.service.OaProcessTemplateService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iron.process.service.OaProcessTypeService;
 import io.netty.util.internal.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,8 @@ public class OaProcessTemplateServiceImpl extends ServiceImpl<OaProcessTemplateM
     @Autowired
     OaProcessTypeService oaProcessTypeService;
 
+    @Autowired
+    OaProcessService oaProcessService;
     @Override
     public void publish(long id) {
         // 第一更新Template status, 第二部署activity
@@ -40,6 +44,11 @@ public class OaProcessTemplateServiceImpl extends ServiceImpl<OaProcessTemplateM
         this.updateById(template);
 
         // 进行部署,对应的activity
+        if (!StringUtils.isEmpty(template.getProcessDefinitionPath())) {
+
+            oaProcessService.deployByZip(template.getProcessDefinitionPath());
+        }
+
     }
 
     @Override

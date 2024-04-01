@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iron.auth.mapper.SysUserMapper;
 import com.iron.auth.service.SysMenuService;
 import com.iron.auth.service.SysUserService;
+import com.iron.custom.LoginUserInfoHelper;
+import com.iron.model.system.SysDept;
+import com.iron.model.system.SysPost;
 import com.iron.model.system.SysUser;
 import com.iron.vo.system.RouterVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +40,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         result.put("buttons", permsList);
         result.put("routers", routerVoList);
         return result;
+    }
+
+    @Override
+    public Map<String, Object> getCurrentUser() {
+
+        SysUser sysUser = baseMapper.selectById(LoginUserInfoHelper.getUserId());
+//        SysDept sysDept = sysDeptService.getById(sysUser.getDeptId());
+//        SysPost sysPost = sysPostService.getById(sysUser.getPostId());
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", sysUser.getName());
+        map.put("phone", sysUser.getPhone());
+//        map.put("deptName", sysDept.getName());
+//        map.put("postName", sysPost.getName());
+        return map;
     }
 }

@@ -45,6 +45,7 @@ public class Test01_启动流程实例时候设置 {
         Map<String, Object> variables = new HashMap<>();    // 定义流程变量参数
         variables.put("assignee1","zhangsan");
         variables.put("assignee2","lisi");
+        variables.put("assignee3", "wangwu");
 
         //创建流程实例,我们需要知道流程定义的key
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("jiaban", variables);     // 设置流程变量

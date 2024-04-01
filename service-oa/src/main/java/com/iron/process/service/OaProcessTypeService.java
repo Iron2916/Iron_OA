@@ -13,4 +13,5 @@ import com.iron.model.process.OaProcessType;
  */
 public interface OaProcessTypeService extends IService<OaProcessType> {
 
+    Object findProcessType();
 }

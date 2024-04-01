@@ -72,6 +72,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- 引入wechat依赖实现推送菜单-->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

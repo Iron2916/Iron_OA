@@ -1,6 +1,7 @@
 package com.iron.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.iron.custom.LoginUserInfoHelper;
 import com.iron.jwt.JwtHelper;
 import com.iron.result.ResponseUtil;
 import com.iron.result.Result;
@@ -68,6 +69,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             final String username = JwtHelper.getUsername(token);
             logger.info("userName:" + username);
             if (!StringUtils.isEmpty(username)) {
+
+                //通过ThreadLocal记录当前登录人信息
+                LoginUserInfoHelper.setUserId(JwtHelper.getUserId(token));
+                LoginUserInfoHelper.setUsername(username);
 
                 // 返回对应的 usernamePasswordAuthenticationToken
                 final String authoritiesString = (String)redisTemplate.opsForValue().get(username); // 得到 存入的JSONString

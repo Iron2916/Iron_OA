@@ -83,6 +83,5 @@ public class OaProcessTypeController {
 
         return Result.ok(oaProcessTypeService.list());
     }
-
 }
 

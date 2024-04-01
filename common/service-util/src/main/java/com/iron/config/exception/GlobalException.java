@@ -19,6 +19,7 @@ public class GlobalException {
     @ResponseBody
     public Result erroe(Exception e) {
 
+        System.out.print("全局异常处理：");
         e.printStackTrace();
         return Result.fail().message("全局异常处理");
     }

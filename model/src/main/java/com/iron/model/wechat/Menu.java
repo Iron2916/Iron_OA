@@ -3,9 +3,12 @@ package com.iron.model.wechat;
 import com.iron.model.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.iron.vo.wechat.MenuVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @ApiModel(description = "菜单")
@@ -31,4 +34,5 @@ public class Menu extends BaseEntity {
 
     @ApiModelProperty(value = "排序")
     private Integer sort;
+
 }

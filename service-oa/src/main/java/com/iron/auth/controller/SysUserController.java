@@ -140,5 +140,11 @@ public class SysUserController {
         return Result.ok();
     }
 
+    @ApiOperation(value = "获取当前用户基本信息")
+    @GetMapping("getCurrentUser")
+    public Result getCurrentUser() {
+
+        return Result.ok(service.getCurrentUser());
+    }
 }
 
